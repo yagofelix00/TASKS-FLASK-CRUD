@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from models import Task
+from models.task import Task
 
 app = Flask(__name__)
 
@@ -18,6 +18,20 @@ def create_task():
     task_id_control += 1
     tasks.append(new_task)
     return jsonify({'message': 'Nova tarefa criada com sucesso'})
+
+
+@app.route('/tasks', methods=['GET'])
+def get_tasks():
+    task_list = []
+    for task in tasks:
+        task_list.append(task.to_dict()) 
+
+    output = {
+                "tasks": task_list,
+                "total_tasks": 0
+            }
+    return jsonify(output)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
