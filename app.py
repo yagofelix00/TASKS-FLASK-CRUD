@@ -48,5 +48,12 @@ def update_task (id):
     if task == None:
         return jsonify({"message": "Não foi possivel encontrar a atividade"}) , 404  
 
+    data = request.get_json()
+    task.title = data['titlle']
+    task.description = data['description']      
+    task.completed = data['completed']
+
+    return jsonify({"message": "Traefa atualizada com sucesso"})
+
 if __name__ == "__main__":
     app.run(debug=True)
