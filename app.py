@@ -26,7 +26,7 @@ def get_tasks():
     
     output = {
                 "tasks": task_list,
-                "total_tasks": 0
+                "total_tasks": len(task_list)
             }
     return jsonify(output)
 
@@ -38,12 +38,15 @@ def get_task(id):
 
     return jsonify({"message": "Não foi possivel encontrar a atividade"}), 404
         
-@app.route('/user/<username>')
-def show_user(username):
-    print(username)
-    print(type(username))
-    return username       
+@app.route('/tasks/<int:id>', methods=['PUT'])
+def update_task (id):
+    task = None
+    for t in tasks:
+        if t.id == id:
+            task = t
 
+    if task == None:
+        return jsonify({"message": "Não foi possivel encontrar a atividade"}) , 404  
 
 if __name__ == "__main__":
     app.run(debug=True)
