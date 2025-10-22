@@ -11,4 +11,6 @@ def test_create_task():
     }
     response = requests.post(f"{BASE_URL}/tasks", json=new_task_data)
     assert response.status_code == 200
-    
+    response_json = response_json
+    assert "message" in response_json
+    assert "id" in response_json
