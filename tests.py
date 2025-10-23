@@ -24,9 +24,16 @@ def test_get_tasks():
     assert "total_tasks" in response_json
 
 def test_get_task():
-    if tasks: 
-        task_id = [0]
-        response = requests.get(f"{BASE_URL}/tasks/{task_id}")
+    if not tasks:
+        new_task_data = {"title": "Tarefa temporária", "description": "Criada para teste"}
+        response = requests.post(f"{BASE_URL}/tasks", json=new_task_data)
         assert response.status_code == 200
-        response_json = response.json()
-        assert task_id == response_json['id']
+        tasks.append(response.json()["id"])
+
+    task_id = tasks[0]
+    response = requests.get(f"{BASE_URL}/tasks/{task_id}")
+    assert response.status_code == 200
+
+    response_json = response.json()
+    assert response_json["id"] == task_id
+
