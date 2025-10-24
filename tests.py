@@ -49,4 +49,11 @@ def test_update_task():
     assert response.status_code == 200
     response_json = response.json()
     assert "message" in response_json
-        
+
+    # Nova requisãp a tarefa especifica
+    response = requests.get(f"{BASE_URL}/tasks/{task_id}")
+    assert response.status_code == 200
+    response_json = response.json()
+    assert response_json["title"] == payload["title"]
+    assert response_json["description"] == payload["description"]
+    assert response_json["completed"] == payload["completed"]        
