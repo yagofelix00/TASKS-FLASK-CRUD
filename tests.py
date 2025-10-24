@@ -37,3 +37,16 @@ def test_get_task():
     response_json = response.json()
     assert response_json["id"] == task_id
 
+def test_update_task():
+    if tasks:
+        task_id = tasks[0]
+        payload = {
+            "completed": True,
+            "description": "Nova descrição",
+            "title": "Titulo atualizado"
+        }
+    response = requests.put(f"{BASE_URL}/tasks/{task_id}", json=payload)
+    assert response.status_code == 200
+    response_json = response.json()
+    assert "message" in response_json
+        
