@@ -187,9 +187,9 @@ http://127.0.0.1:5000
 
 ## 👨‍💻 Author
 
-**Yago Félix**
-💼 Python Developer — Back-end | Data Analysis | Automation
-🔍 Focused on building APIs, automated solutions, and data pipelines using Python.
+**Yago Félix**  
+💼 Python Developer — Back-end | Data Analysis | Automation  
+🔍 Focused on building APIs, automated solutions, and data pipelines using Python.  
 🔗 GitHub: [https://github.com/yagofelix00](https://github.com/yagofelix00)
 
 ---
